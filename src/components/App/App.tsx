@@ -2,24 +2,26 @@ import React from 'react'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { BrowserRouter as Router, Switch, Route, Redirect, useLocation } from 'react-router-dom'
 import { HomePage, BoardPage, ScorePage } from '../../pages'
-import styled from 'styled-components'
+import { theme } from '../../common'
+import styled, { ThemeProvider } from 'styled-components'
 
 const StyledMain = styled.main`
- background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
-`;
-
-export const App = () => {
+  background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+`
+const App = () => {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-        <Route path="*">
-          <Main />
-        </Route>
-      </Switch>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+          <Route path="*">
+            <Main />
+          </Route>
+        </Switch>
+      </Router>
+    </ThemeProvider>
   )
 }
 
@@ -41,3 +43,4 @@ const Main = () => {
   )
 }
 
+export default App
